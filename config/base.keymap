@@ -166,6 +166,10 @@ ZMK_MOD_MORPH(bs_del, bindings = <&kp BSPC>, <&kp DEL>;
 ZMK_TAP_DANCE(copy_cut, bindings = <&kp LC(INS)>, <&kp LC(X)>;
               tapping-term-ms = <200>;)
 
+// 0-cell behaviors for HRM-overlapping combos (select all, task manager).
+ZMK_MACRO(sel_all, bindings = <&kp LC(A)>;)
+ZMK_MACRO(task_mgr, bindings = <&kp LC(LS(ESC))>;)
+
 // Misc aliases. [TODO: clean up]
 #define CANCEL    &kp K_CANCEL            // Cancel caps-word & auto-layers.
 #define DSK_PREV  &hmr LCTRL LG(LC(LEFT)) // Previous desktop.
