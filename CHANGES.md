@@ -32,14 +32,13 @@ urob 的 Colemak-DH 布局,共 6 层(Base / Nav / Fn / Num / Sys / Mouse),核心
 
 - **主行 mod(HRM)** — `balanced` flavor + `require-prior-idle-ms` + 位置 hold-tap,近乎"无定时"、低误触
 - **组合键代替符号层** — 所有符号通过 combo 输入(`combos.dtsi`)
-- **Leader 键** — 德语变音、希腊字母、系统命令(`leader.dtsi`)
 - **智能层** — Numword(数字自动激活/退出)、Smart-mouse(W+P 组合触发)
 - **魔法拇指键** — 一键四用:Repeat / 粘滞 Shift / Shift / Caps Word
 - **鼠标层** — 右半按键模拟鼠标移动/滚轮/按键(`mouse.dtsi`,需 `CONFIG_ZMK_POINTING=y`)
 
 ---
 
-## 二、已做改动(3 个文件)
+## 二、已做改动
 
 ### 1. `config/cradio.keymap`(新建)
 
@@ -92,6 +91,13 @@ include:
     shield: settings_reset
 ```
 
+### 4. 精简 leader 键(后续改动)
+
+- 删除 leader 键与 Unicode 输入:移除 `zmk-leader-key`、`zmk-unicode` 两个模块,
+  删除 `config/leader.dtsi`
+- `S+T` 组合键改为**全选**(`Ctrl+A`),`R+S+T` 改为**任务管理器**(`Ctrl+Shift+Esc`)
+- Sys 层右半顶行最左(J 键)新增 `&out OUT_TOG`:**一键切换 USB/蓝牙输出**
+
 ---
 
 ## 三、关键决定
@@ -105,7 +111,7 @@ include:
 ### 不加 `CONFIG_ZMK_STUDIO`(ZMK Studio)
 
 - 无实质影响:固件照常工作,改键仍走"改代码 → 重新构建刷机"
-- urob 布局重度依赖自定义宏(combos/leader/adaptive-key/tri-state 等),
+- urob 布局重度依赖自定义宏(combos/adaptive-key/tri-state 等),
   ZMK Studio 对这些支持有限
 - 若要启用还需额外两处改动(`build.yaml` 加 snippet + workflow 改 `zephyr-full`),
   会显著拉长构建时间,故不启用
@@ -133,3 +139,14 @@ include:
 
 - 原 urob 的 `config/corneish_zen.*`、`config/glove80.*`、`config/planck_rev6.*`
   已不被 `build.yaml` 引用,闲置无害,可保留作参考或删除。
+
+## 六、外部工具依赖(Windows 下需额外安装)
+
+本布局绝大部分功能内置在固件里,仅以下一个功能依赖外部软件,只需安装运行、无需改配置:
+
+| 工具 | 对应功能 | 仓库 |
+|---|---|---|
+| win-11-virtual-desktop-enhancer | Fn 层桌面管理 5 键(PDesk/NDesk/PinW/PinA/DSK_MGR) | github.com/urob/win-11-virtual-desktop-enhancer |
+
+- 桌面工具仓库已带预编译 `virtual-desktop-enhancer.exe`,直接运行即可。
+- 不装它,仅桌面键失效,其余功能不受影响。
