@@ -34,8 +34,8 @@ parse_config:
     "&smart_mouse": Smart Mouse
 
     "&hml LS(LALT)TAB": Tab
-    "&hm_combo_ldr": Leader
-    "&hm_combo_ldrsh": Shift+Leader
+    "&hm_combo_ldr": Select All
+    "&hm_combo_ldrsh": Task Manager
     "&hm_combo_lpar": { "t": "< (" }
     "&hm_combo_rpar": { "t": "> )"}
     "&kp LBKT": { "t": "{ ["}
